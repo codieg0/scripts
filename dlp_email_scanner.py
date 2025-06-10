@@ -1,3 +1,6 @@
+# Done with Github copilot - I did some little bits.
+# Will add more fnctionalities
+ 
 import os
 import sys
 import re
@@ -9,18 +12,6 @@ from email.parser import BytesParser
 from docx import Document
 import PyPDF2
 from bs4 import BeautifulSoup  # Add this at the top
-
-
-# Things to do before:
-# 1. Install Python3 from the Microsoft Store -> https://apps.microsoft.com/detail/9PNRBTZXMB4Z?hl=en-us&gl=GB&ocid=pdpshare
-# 2. Create a folder in your Desktop. Save the script and the file SmartIDDictionaryTerms.xlsx
-# 3. Create a subfolder name attachments and save the eml files or attachments triggering the DLP rule
-# 4. Run this in Powershell -> python.exe -m pip install pandas openpyxl python-docx PyPDF2 beautifulsoup4
-
-# Usage of the script:  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml
-
-# Website to validate SSN -> https://www.ssnregistry.org/validate/
-# Website to validate CC: https://www.validcreditcardnumber.com/
 
 # --- Load Dictionary Terms from Excel ---
 def load_dlp_dict(xlsx_path):
@@ -104,9 +95,6 @@ def extract_pdf_text(path):
             if page_text:
                 text += page_text + "\n"
     return text
-
-from bs4 import BeautifulSoup  # Add this at the top
-import csv
 
 def process_attachment(filename, payload):
     ext = filename.lower().split('.')[-1]
