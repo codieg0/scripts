@@ -189,7 +189,10 @@ def print_matches(filename, results):
                 print(f"  {item['where']}: {term}  [category: {category}]")
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="DLP Email/File Scanner")
+    parser = argparse.ArgumentParser(
+        description="DLP Email/File Scanner",
+        usage="dlp_email_scanner.py [dict_path] input_path [--scan [{ssn,cc,dl,dict} ...]]"
+    )
     parser.add_argument("dict_path", nargs="?", help="SmartIDDictionaryTerms.xlsx (required if scanning for dict terms)")
     parser.add_argument("input_path", help="emails_folder_or_eml_file_or_attachment")
     parser.add_argument("--scan", nargs="*", choices=["ssn", "cc", "dl", "dict"], help="What to scan for (default: all)")
