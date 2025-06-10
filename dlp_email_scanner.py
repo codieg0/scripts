@@ -1,5 +1,5 @@
 # Done with Github copilot - I did some little bits.
-# Will add more fnctionalities
+# Will add more functionalities
  
 import os
 import sys
