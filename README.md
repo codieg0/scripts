@@ -29,7 +29,7 @@
 To scan an email or attachment, run:
 
 ```powershell
-py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml
+py.exe ./dlp_email_scanner.py [dict_path] input_path [--scan [{ssn,cc,dl,dict} ...]]
 ```
 
 - You can also provide a folder containing `.eml` files or a single attachment (e.g., PDF, DOCX, XLSX) as the third argument.
@@ -37,7 +37,7 @@ py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.
 You can also scan all files in the `attachments` folder at once:
 
 ```powershell
-py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments
+py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments --scan [ssn, cc, dl, dict]
 ```
 
 For help and a full list of options, run:
