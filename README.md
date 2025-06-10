@@ -11,9 +11,12 @@
    - Create a folder on your Desktop (e.g., `dlp_scanner`).
    - Save the script (`dlp_email_scanner.py`) and the Excel file (`SmartIDDictionaryTerms.xlsx`) .
    - Create a subfolder named `attachments` and save `.eml` files or other attachments you want to scan in it.
-   - This script should create the folders in Desktop
+   - These 2 one-liners should create the folders in Desktop
       ```bash
-      mkdir /mnt/c/Users/$USER/Desktop/dlp; mkdir /mnt/c/Users/$USER/Desktop/dlp/attachments
+      New-Item -Path "C:\Users\$env:USERNAME\Desktop\dlp\" -ItemType Directory
+      ```
+      ```bash
+      New-Item -Path "C:\Users\$env:USERNAME\Desktop\dlp\attachments" -ItemType Directory
       ```
 3. **Install dependencies**
    - Open PowerShell in your project folder and run:
