@@ -51,10 +51,12 @@ If you disable all, the script will default to running all checks.
 When you run the script, the output will look similar to:
 
 ```powershell
-caos@NucBoxM5PLUS:~/ubuntushared/PE/DLP$ py dlp_email_scanner.py SmartIDDictionaryTerms.xlsx attachments/ccasdasdas.eml
+PS C:\Users\Diego\Desktop\ubuntushared\PE\DLP> py.exe .\dlp_email_scanner.py .\attachments\ --scan ssn
 
-ccasdasdas.eml
-  [EMAIL_BODY]: 6225197124481425  [category: CreditCard]
+email.eml
+  [EMAIL_BODY]: 489-36-8350  [category: SSN]
+  testingDLP.docx: 489-36-8350  [category: SSN]
+  testingDLP.pdf: 489-36-8350  [category: SSN]
 ```
 
 ## Notes
