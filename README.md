@@ -34,6 +34,32 @@ py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.
 
 - You can also provide a folder containing `.eml` files or a single attachment (e.g., PDF, DOCX, XLSX) as the third argument.
 
+### Selective Scanning Options
+
+You can now control which types of data to scan for using these flags:
+
+- `--no-dict`   Disable dictionary term search
+- `--no-ssn`   Disable SSN search
+- `--no-cc`    Disable credit card search
+- `--no-dl`    Disable driver license search
+
+If you disable all, the script will default to running all checks.
+
+#### Examples
+
+- Only check for SSN and credit cards:
+  ```powershell
+  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-dict --no-dl
+  ```
+- Only check for dictionary terms:
+  ```powershell
+  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-ssn --no-cc --no-dl
+  ```
+- Only check for SSN:
+  ```powershell
+  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-dict --no-cc --no-dl
+  ```
+
 When you run the script, the output will look similar to:
 
 ```powershell
