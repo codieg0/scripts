@@ -192,11 +192,11 @@ def parse_args():
     parser = argparse.ArgumentParser(description="DLP Email/File Scanner")
     parser.add_argument("dict_path", nargs="?", help="SmartIDDictionaryTerms.xlsx (required if scanning for dict terms)")
     parser.add_argument("input_path", help="emails_folder_or_eml_file_or_attachment")
-    parser.add_argument("--scan", nargs="+", choices=["ssn", "cc", "dl", "dict"], help="What to scan for (default: all)")
+    parser.add_argument("--scan", nargs="*", choices=["ssn", "cc", "dl", "dict"], help="What to scan for (default: all)")
     args = parser.parse_args()
 
     # Determine what to scan for
-    if args.scan:
+    if args.scan is not None and len(args.scan) > 0:
         check_dict = "dict" in args.scan
         check_ssn = "ssn" in args.scan
         check_cc = "cc" in args.scan
