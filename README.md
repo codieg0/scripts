@@ -13,7 +13,7 @@
    - Create a subfolder named `attachments` and save `.eml` files or other attachments you want to scan in it.
    - These one-liner should create the folders in Desktop
       ```bash
-      New-Item -Path "C:\Users\$env:USERNAME\Desktop\dlp\attachments" -ItemType Directory
+      New-Item -Path "C:\Users\$env:USERNAME\Desktop\DLP\attachments" -ItemType Directory
       ```
 3. **Install dependencies**
    - Open PowerShell in your project folder and run:
