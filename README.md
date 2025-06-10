@@ -63,11 +63,12 @@ If you disable all, the script will default to running all checks.
 When you run the script, the output will look similar to:
 
 ```powershell
-PS C:\Users\dcastroosorio\Downloads\Info\DLP> py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml
- 
+PS C:\Users\Diego\Desktop\ubuntushared\PE\DLP> py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-dict --no-cc --no-dl
+
 email.eml
-  [EMAIL_BODY]: 6225197124481425  [category: CreditCard]
-  cnBan-KKKKKKK.txt: 6225197124481425  [category: CreditCard]
+  [EMAIL_BODY]: 489-36-8350  [category: SSN]
+  testingDLP.docx: 489-36-8350  [category: SSN]
+  testingDLP.pdf: 489-36-8350  [category: SSN]
 ```
 
 ## Notes
