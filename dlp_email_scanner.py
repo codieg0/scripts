@@ -190,24 +190,28 @@ def print_matches(filename, results):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="DLP Email/File Scanner")
-    parser.add_argument("dict_path", nargs="?", help="SmartIDDictionaryTerms.xlsx (optional if --no-dict)")
+    parser.add_argument("dict_path", nargs="?", help="SmartIDDictionaryTerms.xlsx (required if scanning for dict terms)")
     parser.add_argument("input_path", help="emails_folder_or_eml_file_or_attachment")
-    parser.add_argument("--no-dict", action="store_true", help="Disable dictionary term search")
-    parser.add_argument("--no-ssn", action="store_true", help="Disable SSN search")
-    parser.add_argument("--no-cc", action="store_true", help="Disable credit card search")
-    parser.add_argument("--no-dl", action="store_true", help="Disable driver license search")
+    parser.add_argument("--scan", nargs="+", choices=["ssn", "cc", "dl", "dict"], help="What to scan for (default: all)")
     args = parser.parse_args()
-    # If all are disabled, default to all enabled
-    if args.no_dict and args.no_ssn and args.no_cc and args.no_dl:
-        args.no_dict = args.no_ssn = args.no_cc = args.no_dl = False
-    return args
+
+    # Determine what to scan for
+    if args.scan:
+        check_dict = "dict" in args.scan
+        check_ssn = "ssn" in args.scan
+        check_cc = "cc" in args.scan
+        check_dl = "dl" in args.scan
+    else:
+        check_dict = check_ssn = check_cc = check_dl = True
+
+    # If dict scan is requested, dict_path must be provided
+    if check_dict and not args.dict_path:
+        parser.error("Dictionary path is required when scanning for dict terms (--scan dict)")
+
+    return args, check_dict, check_ssn, check_cc, check_dl
 
 def main():
-    args = parse_args()
-    check_dict = not args.no_dict
-    check_ssn = not args.no_ssn
-    check_cc = not args.no_cc
-    check_dl = not args.no_dl
+    args, check_dict, check_ssn, check_cc, check_dl = parse_args()
     dlp_dict = load_dlp_dict(args.dict_path) if check_dict and args.dict_path else {}
     input_path = args.input_path
     if os.path.isdir(input_path):

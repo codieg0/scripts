@@ -34,41 +34,27 @@ py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.
 
 - You can also provide a folder containing `.eml` files or a single attachment (e.g., PDF, DOCX, XLSX) as the third argument.
 
-### Selective Scanning Options
+You can also scan all files in the `attachments` folder at once:
 
-You can now control which types of data to scan for using these flags:
+```powershell
+py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments
+```
 
-- `--no-dict`   Disable dictionary term search
-- `--no-ssn`   Disable SSN search
-- `--no-cc`    Disable credit card search
-- `--no-dl`    Disable driver license search
+For help and a full list of options, run:
+
+```powershell
+py.exe .\dlp_email_scanner.py -h
+```
 
 If you disable all, the script will default to running all checks.
-
-#### Examples
-
-- Only check for SSN and credit cards:
-  ```powershell
-  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-dict --no-dl
-  ```
-- Only check for dictionary terms:
-  ```powershell
-  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-ssn --no-cc --no-dl
-  ```
-- Only check for SSN:
-  ```powershell
-  py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-dict --no-cc --no-dl
-  ```
 
 When you run the script, the output will look similar to:
 
 ```powershell
-PS C:\Users\Diego\Desktop\ubuntushared\PE\DLP> py.exe .\dlp_email_scanner.py .\SmartIDDictionaryTerms.xlsx .\attachments\email.eml --no-dict --no-cc --no-dl
+caos@NucBoxM5PLUS:~/ubuntushared/PE/DLP$ py dlp_email_scanner.py SmartIDDictionaryTerms.xlsx attachments/ccasdasdas.eml
 
-email.eml
-  [EMAIL_BODY]: 489-36-8350  [category: SSN]
-  testingDLP.docx: 489-36-8350  [category: SSN]
-  testingDLP.pdf: 489-36-8350  [category: SSN]
+ccasdasdas.eml
+  [EMAIL_BODY]: 6225197124481425  [category: CreditCard]
 ```
 
 ## Notes
@@ -91,3 +77,4 @@ email.eml
 - **Validate SSNs:** [ssnregistry.org/validate](https://www.ssnregistry.org/validate/)
 - **Validate Credit Cards:** [validcreditcardnumber.com](https://www.validcreditcardnumber.com/)
 - **Validate NDC:** [dps.fda.gov/ndc](https://dps.fda.gov/ndc/)
+
