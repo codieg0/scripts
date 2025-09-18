@@ -13,6 +13,9 @@ for cmd in jq curl; do
     fi
 done
 
+# Load environment variables
+source .env
+
 # This is the API key
 API_key="${whoisKey}"
 
