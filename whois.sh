@@ -5,9 +5,9 @@ for cmd in jq curl; do
     if ! command -v $cmd &> /dev/null; then
         echo "❌ Error: '$cmd' is not installed. Please install it using your package manager:"
         if [ "$cmd" = "jq" ]; then
-            echo "   Debian/Ubuntu: sudo apt install -y jq"
+            echo "Ubuntu: sudo apt install -y jq"
         elif [ "$cmd" = "curl" ]; then
-            echo "   Debian/Ubuntu: sudo apt install -y curl"
+            echo "Ubuntu: sudo apt install -y curl"
         fi
         exit 1
     fi
@@ -36,7 +36,6 @@ else
     country=$(echo "$raw" | grep -i "Country"               | head -n1 | cut -d: -f2- | xargs)
     cidr=$(echo "$raw"    | grep -i "CIDR"                  | head -n1 | cut -d: -f2- | xargs)
     netrange=$(echo "$raw"| grep -i "NetRange"              | head -n1 | cut -d: -f2- | xargs)
-    asn=$(echo "$raw"     | grep -iE "OriginAS|AS"          | head -n1 | cut -d: -f2- | xargs)
 
     echo
     echo "📡 WHOIS Summary for $ip"
@@ -44,6 +43,5 @@ else
     echo "OrgName : $org"
     echo "Country : $country"
     echo "CIDR    : $cidr"
-    echo "NetRange: $netrange"
     echo
 fi
