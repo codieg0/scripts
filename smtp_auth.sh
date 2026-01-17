@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash bash
 # Created by Diego Castro.
 # Purpose: SMTP Authentication testing tool fo PPE support.
 
@@ -8,6 +8,7 @@
 #    An .env file can be used to store the username and password, but the interactive `read` prompts
 #    would need to be removed or made optional.
 # Might need a .md file? Think its simple enough. Will see.
+
 # Anyway nice way to learn Bash
 
 # If something breaks, script stops
@@ -36,6 +37,11 @@ email_info() {
     read -rep "Body: " body
 }
 
+email_info_content() {
+    read -rep "Sender: " sender
+    read -rep "Recipient: " rcpt
+}
+
 smtp_auth_info() {
     read -rep "Username: " username
     read -rep "Password: " passwd
@@ -51,6 +57,9 @@ location_data() {
 }
 
 send_email() {
+    email_info
+    smtp_auth_info
+    
     swaks \
     -f "$sender" \
     -t "$rcpt" \
@@ -62,6 +71,19 @@ send_email() {
     -ap "$passwd" \
     --header "Subject: $subject" \
     --body "$body" \
+    "$@"
+}
+
+send_email_data_content() {
+    swaks \
+    -f "$sender" \
+    -t "$rcpt" \
+    -s "$server" \
+    -p "$port" \
+    --tls \
+    -a LOGIN \
+    -au "$username" \
+    -ap "$passwd" \
     "$@"
 }
 
@@ -77,9 +99,10 @@ send_email_attachment() {
 }
 
 send_email_data() {
+    email_info_content
+    smtp_auth_info
     location_data
-
-    send_email -d "@$data"
+    send_email_data_content -d "@$data"
     echo
 }
 
@@ -101,13 +124,9 @@ smtp_auth_creds() {
     ); then
         echo
         echo "SMTP credentials are valid"
-        echo
-        return 0
     else
         echo
         echo "SMTP authentication failed"
-        echo
-        return 1
     fi
 }
 
@@ -124,21 +143,18 @@ while true; do
         smtp_auth_creds
         ;;
     2) 
-        email_info
-        smtp_auth_info
-        echo "Sending email to $rcpt."
+        echo "Sending email."
+        echo
         send_email
         ;;
     3) 
-        email_info
-        smtp_auth_info
-        echo "Sending email to $rcpt with attachment."
+        echo "Sending email with attachment."
+        echo
         send_email_attachment
         ;;
     4) 
-        email_info
-        smtp_auth_info
-        echo "Sending email to $rcpt with same data as eml."
+        echo "Sending email with same data as eml."
+        echo
         send_email_data
         ;;
     q|Q) 
