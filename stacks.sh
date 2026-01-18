@@ -1,4 +1,6 @@
 #!/bin/bash
+# Created by Diego Castro.
+# Purpose: SMTP Authentication testing tool fo PPE support.
 
 # Added a menu - no need but just wanted to practice from previous project.
 menu() {
